@@ -1,0 +1,18 @@
+{
+  "Database": "005_mes",
+  "TemplatePath": "sqltemplates/createtable.sql",
+  "Tables": [
+    {
+      "Prefix": "S7_212_DB",
+      "StartIndex": 4000,
+      "EndIndex": 4049,
+      "Comment": "212 S7 PLC 真实点位测试"
+    },
+    {
+      "Prefix": "S7_213_DB",
+      "StartIndex": 4000,
+      "EndIndex": 4049,
+      "Comment": "213 S7 PLC 真实点位测试"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "ConnectionString": "server=192.168.0.122;user id=root;password=root;database=005_mes;charset=utf8;sslMode=None;pooling=true;minpoolsize=1;maxpoolsize=1024;ConnectionLifetime=30;DefaultCommandTimeout=600;",
+  "TablePrefix": "finally_"
+}

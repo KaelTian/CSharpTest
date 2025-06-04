@@ -1,0 +1,114 @@
+{
+  "Id": "{{id}}",
+  "Name": "{{name}}",
+  "Area": "B区",
+  "IP": "{{lineip}}",
+  "Port": 8091,
+  "Directory": "..\\Business\\{{line}}",
+  "Assembly": [
+    "Library.ProjectFive",
+    "PlcPoint"
+  ],
+  "WorkUnits": [
+    {
+      "WorkUnit": "S7PlcToDBWorkUnit",
+      "Name": "动态获取西门子PLC点位存储DB工作单元",
+      "Reference": "PlcToDBWorkUnit",
+      "IsEnabled": true,
+      "WorkUnitSettings": [
+        {
+          "Key": "DBEntity",
+          "Name": "数据库实体名",
+          "Value": "{{dbtable}}",
+          "IsEnabled": true
+        },
+        {
+          "Key": "MonitTag",
+          "Name": "监视",
+          "Value": "[\"bit\"]",
+          "IsEnabled": true
+        },
+        {
+          "Key": "PlcDBMapping",
+          "Name": "PLC与DB字段对应表",
+          "Value": "PlcDBMapping.json",
+          "IsEnabled": true
+        }
+      ],
+      "Components": [
+        {
+          "Component": "PLC",
+          "Name": "S7 PLC内部组件",
+          "Reference": "S7Component",
+          "IsEnabled": true,
+          "ComponentSettings": [
+            {
+              "Key": "Terminal",
+              "Name": "PLC设备",
+              "Value": "{\"Terminal\":\"PLC\",\"Ip\":\"{{plcip}}\",\"Port\":102,\"DBBlock\":[{\"DB\":\"{{dbblock}}\",\"Name\":\"{{dbtable}}\",\"Type\":\"Demo.json\",\"Node\":\"\"}]}",
+              "IsEnabled": true
+            },
+            {
+              "Key": "IsLockOpen",
+              "Name": "连接锁(线程安全连接PLC)",
+              "Value": "True",
+              "IsEnabled": true
+            },
+            {
+              "Key": "ShowReadTimeSpan",
+              "Name": "显示采集时间间隔",
+              "Value": "True",
+              "IsEnabled": true
+            }
+          ]
+        },
+        {
+          "Component": "DB",
+          "Name": "数据库组件",
+          "IsEnabled": true
+        },
+        {
+          "Component": "SignalR",
+          "Name": "SignalR组件",
+          "IsEnabled": false
+        }
+      ]
+    }
+  ],
+  "Components": [
+    {
+      "Component": "DB",
+      "Name": "数据库组件",
+      "Reference": "DbComponent",
+      "IsEnabled": true,
+      "ComponentSettings": [
+        {
+          "Key": "ConnectionString",
+          "Name": "连接字符串",
+          "Value": "server=192.168.0.122;user id=root;password=root;database=005_mes;charset=utf8;sslMode=None;pooling=true;minpoolsize=1;maxpoolsize=1024;ConnectionLifetime=30;DefaultCommandTimeout=600;",
+          "IsEnabled": true
+        }
+      ]
+    },
+    {
+      "Component": "SignalR",
+      "Name": "SignalR组件",
+      "Reference": "SignalRComponent",
+      "IsEnabled": false,
+      "ComponentSettings": [
+        {
+          "Key": "Url",
+          "Name": "地址",
+          "Value": "http://127.0.0.1:8091/signalr?user=Sender1&group=Device1Group",
+          "IsEnabled": true
+        },
+        {
+          "Key": "KeepAliveInterval",
+          "Name": "心跳时间",
+          "Value": "1000",
+          "IsEnabled": true
+        }
+      ]
+    }
+  ]
+}

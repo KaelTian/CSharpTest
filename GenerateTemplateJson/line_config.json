@@ -1,0 +1,23 @@
+{
+  "count": 100,
+  "startId": 1,
+  "lineIp": "127.0.0.1",
+  "lineNamePrefix": "Line",
+  "lineNameFormat": "产线{0}",
+  "dbTableRule": [
+    {
+      "range": [ 1, 50 ],
+      "prefix": "FINALLY_212_DB",
+      "plcip": "192.168.0.212",
+      "dbBlockPrefix": "DB",
+      "dbBlockStartIndex": 4000
+    },
+    {
+      "range": [ 51, 100 ],
+      "prefix": "FINALLY_213_DB",
+      "plcip": "192.168.0.213",
+      "dbBlockPrefix": "DB",
+      "dbBlockStartIndex": 3950
+    }
+  ]
+}

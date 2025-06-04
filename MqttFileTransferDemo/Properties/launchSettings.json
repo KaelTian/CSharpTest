@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MqttFileTransferDemo": {
+      "commandName": "Project",
+      "commandLineArgs": "Receive"
+    }
+  }
+}
