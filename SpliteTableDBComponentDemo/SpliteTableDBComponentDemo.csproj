@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="CoreLibrary">
+			<HintPath>..\..\..\005\TC250501-005\03.开发\Collect\Library.ProjectFive\dll\CoreLibrary.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="log4net" Version="3.0.4" />
+		<PackageReference Include="SqlSugarCore" Version="5.1.4.189" />
+	</ItemGroup>
+</Project>

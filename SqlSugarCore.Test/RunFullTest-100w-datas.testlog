@@ -1,0 +1,115 @@
+﻿ SqlSugarCore.Test.OrderTest.RunFullTest
+   Source: OrderTest.cs line 207
+   Duration: 3.7 min
+
+  Standard Output: 
+    已删除表: orderwithindex_20231201
+    已删除表: orderwithindex_20231101
+    已删除表: orderwithindex_20231001
+    已删除表: orderwithindex_20230901
+    已删除表: orderwithindex_20230801
+    已删除表: orderwithindex_20230701
+    已删除表: orderwithindex_20230601
+    已删除表: orderwithindex_20230501
+    已删除表: orderwithindex_20230401
+    已删除表: orderwithindex_20230301
+    已删除表: orderwithindex_20230201
+    已删除表: orderwithindex_20230101
+    已删除表: orderwithindex_20221201
+    已删除表: orderwithindex_20221101
+    已删除表: orderwithindex_20221001
+    已删除表: orderwithindex_20220901
+    已删除表: orderwithindex_20220801
+    已删除表: orderwithindex_20220701
+    已删除表: orderwithindex_20220601
+    已删除表: orderwithindex_20220501
+    已删除表: orderwithindex_20220401
+    已删除表: orderwithindex_20220301
+    已删除表: orderwithindex_20220201
+    已删除表: orderwithindex_20220101
+    已删除表: orderwithindex_20211201
+    已删除表: orderwithindex_20211101
+    已删除表: orderwithindex_20211001
+    已删除表: orderwithindex_20210901
+    已删除表: orderwithindex_20210801
+    已删除表: orderwithindex_20210701
+    已删除表: orderwithindex_20210601
+    已删除表: orderwithindex_20210501
+    已删除表: orderwithindex_20210401
+    已删除表: orderwithindex_20210301
+    已删除表: orderwithindex_20210201
+    已删除表: orderwithindex_20210101
+    已删除表: orderwithindex_20201201
+    已删除表: orderwithindex_20201101
+    已删除表: orderwithindex_20201001
+    已删除表: orderwithindex_20200901
+    已删除表: orderwithindex_20200801
+    已删除表: orderwithindex_20200701
+    已删除表: orderwithindex_20200601
+    已删除表: orderwithindex_20200501
+    已删除表: orderwithindex_20200401
+    已删除表: orderwithindex_20200301
+    已删除表: orderwithindex_20200201
+    已删除表: orderwithindex_20200101
+    已删除表: orderwithoutindex_20231201
+    已删除表: orderwithoutindex_20231101
+    已删除表: orderwithoutindex_20231001
+    已删除表: orderwithoutindex_20230901
+    已删除表: orderwithoutindex_20230801
+    已删除表: orderwithoutindex_20230701
+    已删除表: orderwithoutindex_20230601
+    已删除表: orderwithoutindex_20230501
+    已删除表: orderwithoutindex_20230401
+    已删除表: orderwithoutindex_20230301
+    已删除表: orderwithoutindex_20230201
+    已删除表: orderwithoutindex_20230101
+    已删除表: orderwithoutindex_20221201
+    已删除表: orderwithoutindex_20221101
+    已删除表: orderwithoutindex_20221001
+    已删除表: orderwithoutindex_20220901
+    已删除表: orderwithoutindex_20220801
+    已删除表: orderwithoutindex_20220701
+    已删除表: orderwithoutindex_20220601
+    已删除表: orderwithoutindex_20220501
+    已删除表: orderwithoutindex_20220401
+    已删除表: orderwithoutindex_20220301
+    已删除表: orderwithoutindex_20220201
+    已删除表: orderwithoutindex_20220101
+    已删除表: orderwithoutindex_20211201
+    已删除表: orderwithoutindex_20211101
+    已删除表: orderwithoutindex_20211001
+    已删除表: orderwithoutindex_20210901
+    已删除表: orderwithoutindex_20210801
+    已删除表: orderwithoutindex_20210701
+    已删除表: orderwithoutindex_20210601
+    已删除表: orderwithoutindex_20210501
+    已删除表: orderwithoutindex_20210401
+    已删除表: orderwithoutindex_20210301
+    已删除表: orderwithoutindex_20210201
+    已删除表: orderwithoutindex_20210101
+    已删除表: orderwithoutindex_20201201
+    已删除表: orderwithoutindex_20201101
+    已删除表: orderwithoutindex_20201001
+    已删除表: orderwithoutindex_20200901
+    已删除表: orderwithoutindex_20200801
+    已删除表: orderwithoutindex_20200701
+    已删除表: orderwithoutindex_20200601
+    已删除表: orderwithoutindex_20200501
+    已删除表: orderwithoutindex_20200401
+    已删除表: orderwithoutindex_20200301
+    已删除表: orderwithoutindex_20200201
+    已删除表: orderwithoutindex_20200101
+    开始生成测试数据...
+    共生成 1000000 OrderWithIndex 数据,耗时: 108668ms
+    共生成 1000000 OrderWithoutIndex 数据,耗时: 89554ms
+    
+    开始测试查询性能...
+    带索引表-按日期范围查询(249864条记录)耗时: 3595ms
+    无索引表-按日期范围查询(249864条记录)耗时: 4077ms
+    带索引表-按状态查询(199239条记录)耗时: 3229ms
+    无索引表-按状态查询(199239条记录)耗时: 3264ms
+    带索引表-按客户ID查询(7条记录)耗时: 15ms
+    无索引表-按客户ID查询(7条记录)耗时: 775ms
+    带索引表-复杂条件查询(35982条记录)耗时: 890ms
+    无索引表-复杂条件查询(35982条记录)耗时: 1280ms
+    
