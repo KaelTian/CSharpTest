@@ -211,8 +211,8 @@ namespace ExcelLoader
             var sb = new StringBuilder();
             // 表头
             sb.AppendLine($"DROP TABLE IF EXISTS `{dbName}`.`{tableName}`;");
-            sb.AppendLine($"CREATE TABLE `{tableName}` (");
-            sb.AppendLine("  `ID` int NOT NULL AUTO_INCREMENT,");
+            sb.AppendLine($"CREATE TABLE `{dbName}`.`{tableName}` (");
+            sb.AppendLine("  `ID` long NOT NULL AUTO_INCREMENT,");
             sb.AppendLine("  `CreateTime` datetime(0) DEFAULT CURRENT_TIMESTAMP COMMENT 'Record creation time',");
 
             ExcelPackage.License.SetNonCommercialPersonal("Kael.Tian");

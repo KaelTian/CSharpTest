@@ -5,7 +5,7 @@
 
     public class TypeConverter
     {
-        public static string GetColumnType(string type)
+        public static string GetColumnType(string type, int? strLength = null)
         {
             // 先处理明确的简单类型
             switch (type)
@@ -18,6 +18,10 @@
                     return "bit(1) DEFAULT b'0'";
             }
 
+            if (string.Equals("string", type, StringComparison.OrdinalIgnoreCase) && strLength != null && strLength.Value > 0)
+            {
+                return $"varchar({strLength.Value}) DEFAULT NULL";
+            }
             // 处理 STRING[length] 格式
             var stringMatch = Regex.Match(type, @"^STRING\[(\d+)\]$");
             if (stringMatch.Success)

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Text;
+using System.Xml.Linq;
 using JsonException = Newtonsoft.Json.JsonException;
 
 namespace ExcelLoader
@@ -22,7 +23,7 @@ namespace ExcelLoader
             var jsonContent = System.IO.File.ReadAllText(jsonFilePath);
 
             // 反序列化为对象
-            var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Item>>(jsonContent)!;
+            var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<LoadingAndUnloadingItem>>(jsonContent)!;
 
             // 生成C#类代码
             var classCode = GenerateClassCode(items);
@@ -31,7 +32,7 @@ namespace ExcelLoader
             System.IO.File.WriteAllText(outputFilePath, classCode);
         }
 
-        private string GenerateClassCode(List<Item> items)
+        private string GenerateClassCode(List<LoadingAndUnloadingItem> items)
         {
             var sb = new StringBuilder();
             sb.AppendLine("using System;");
@@ -140,6 +141,73 @@ namespace ExcelLoader
             }
         }
 
+        public void GenerateTableScript(string jsonFilePath, string dbName, string tableName, string outputPath)
+        {
+
+            // 读取JSON文件
+            var jsonContent = System.IO.File.ReadAllText(jsonFilePath);
+
+            // 反序列化为对象
+            var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<LoadingAndUnloadingItem>>(jsonContent)!;
+
+            var sb = new StringBuilder();
+            // 表头
+            sb.AppendLine($"DROP TABLE IF EXISTS `{dbName}`.`{tableName}`;");
+            sb.AppendLine($"CREATE TABLE `{dbName}`.`{tableName}` (");
+            sb.AppendLine("  `ID` bigint(0) NOT NULL AUTO_INCREMENT,");
+            sb.AppendLine("  `CreateTime` datetime(0) DEFAULT CURRENT_TIMESTAMP COMMENT 'Record creation time',");
+
+            foreach (var item in items)
+            {
+
+                var name = item.Offset;
+                var type = item.Type!;
+                var desc = item.Name;
+
+                if (string.IsNullOrWhiteSpace(name)) break; // 到底了
+
+                // 替换特殊字符为下划线
+                var columnName = $"D{name.Replace(".", "_").Replace("[", "_").Replace("]", "")}";
+
+                sb.AppendLine($"  `{columnName}` {TypeConverter.GetColumnType(type, item.Length)} COMMENT '{desc?.Replace("'", "''") ?? "REAL field"}',");
+
+            }
+
+
+            // 表尾
+            sb.AppendLine("  PRIMARY KEY (`ID`)");
+            sb.AppendLine(") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;");
+
+            File.WriteAllText(outputPath, sb.ToString());
+        }
+
+        public void GenerateDBMappingConfig(string jsonFilePath, string outputPath)
+        {
+            Dictionary<string, string> mappings = new Dictionary<string, string>();
+            // 读取JSON文件
+            var jsonContent = System.IO.File.ReadAllText(jsonFilePath);
+
+            // 反序列化为对象
+            var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<LoadingAndUnloadingItem>>(jsonContent)!;
+            foreach (var item in items)
+            {
+                string plcTag = item.Offset!;
+                if (string.IsNullOrWhiteSpace(plcTag))
+                {
+                    continue; // 跳过空行
+                }
+                // 替换特殊字符为下划线
+                var columnName = plcTag.Replace(".", "_").Replace("[", "_").Replace("]", "");
+                mappings.Add(
+                    $"MelsecXinYiHuaLoadingAndUnloading#D{plcTag}",
+                    $"xyh_plc_loading_and_unloading#D{columnName}"
+                    );
+            }
+            var json = JsonConvert.SerializeObject(mappings, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(outputPath, json);
+            Console.WriteLine($"JSON 文件已保存到: {outputPath}");
+        }
+
         private void SaveAsJson<T>(List<T> configs, string outputPath)
               where T : class
         {
@@ -148,11 +216,23 @@ namespace ExcelLoader
         }
     }
 
-    public class Item
+    public class LoadingAndUnloadingItem
     {
+        /// <summary>
+        /// 名称 （D100.0）
+        /// </summary>
         public string? Name { get; set; }
+        /// <summary>
+        /// 偏移量 100.0
+        /// </summary>
         public string? Offset { get; set; }
+        /// <summary>
+        /// 类型
+        /// </summary>
         public string? Type { get; set; }
+        /// <summary>
+        /// 长度（仅STRING类型需要）
+        /// </summary>
         public int? Length { get; set; }
     }
 }
