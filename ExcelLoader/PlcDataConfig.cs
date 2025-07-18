@@ -16,10 +16,5 @@
         /// 显示名称
         /// </summary>
         public string? DisplayName { get; set; }
-
-        /// <summary>
-        /// 是否只读
-        /// </summary>
-        public bool IsReadOnly { get; set; } = true;
     }
 }

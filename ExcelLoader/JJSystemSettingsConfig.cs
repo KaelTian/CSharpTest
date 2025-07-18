@@ -14,10 +14,6 @@
         /// </summary>
         public string? PlcTag { get; set; }
         /// <summary>
-        /// 是否只读
-        /// </summary>
-        public bool IsReadOnly { get; set; } = true;
-        /// <summary>
         /// 描述
         /// </summary>
         public string? Description { get; set; }

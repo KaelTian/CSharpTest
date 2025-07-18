@@ -182,7 +182,6 @@ namespace ExcelLoader
                 var config = new JJSystemSettingsConfig
                 {
                     Id = id,
-                    IsReadOnly = true,
                     Category = $"MES_Parameter{location}",
                     Description = description
                 };
